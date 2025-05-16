@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "prospect": "Sunshine Daycare Centers",
+    "category": "Childcare",
+    "playbook_highlight": "All‑in‑One Workforce Platform",
+    "difficulty": { "level": "Easy" },
+    "prospect_description": "Three‑location daycare in metro‑Atlanta (45 employees). Struggles with PTO tracking and changing GA/FL payroll tax rules.",
+    "decision_makers": [
+      {
+        "persona_name": "Karen Lopez",
+        "persona_role": "Owner / Director",
+        "persona_background": "Former elementary teacher turned entrepreneur. Handles HR herself, hates paperwork. Wants mobile access.",
+        "time_availability": { "window": "<5" }
+      },
+      {
+        "persona_name": "Brianna Wells",
+        "persona_role": "Assistant Director",
+        "persona_background": "Manages daily staffing and parent billing; eager for cleaner time‑clock exports to QuickBooks.",
+        "time_availability": { "window": "5-10" }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "prospect": "Riverside Brewing Co.",
+    "category": "Hospitality",
+    "playbook_highlight": "Compliance Peace of Mind",
+    "difficulty": { "level": "Medium" },
+    "prospect_description": "Craft‑brewery & tap‑room (70 staff, tipped + hourly). Needs tip‑credit compliance and weekly payroll.",
+    "decision_makers": [
+      {
+        "persona_name": "Marcus Nguyen",
+        "persona_role": "General Manager",
+        "persona_background": "Runs operations; frustrated by overtime mis‑calculations on current provider.",
+        "time_availability": { "window": "5-10" }
+      },
+      {
+        "persona_name": "Olivia Chen",
+        "persona_role": "Taproom Manager",
+        "persona_background": "Schedules 40+ servers and bartenders; wants smartphone time‑punch corrections.",
+        "time_availability": { "window": "<5" }
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "prospect": "Silver Oak Home Health",
+    "category": "Healthcare",
+    "playbook_highlight": "Dedicated Service Team",
+    "difficulty": { "level": "Hard" },
+    "prospect_description": "Multi‑state home‑health agency (220 caregivers) with complex shift differentials and credential tracking.",
+    "decision_makers": [
+      {
+        "persona_name": "Dr. Aisha Patel",
+        "persona_role": "Chief Clinical Officer",
+        "persona_background": "Nurse practitioner turned C‑suite. Needs tight compliance audits; open to HCM integration.",
+        "time_availability": { "window": "10-15" }
+      },
+      {
+        "persona_name": "Gavin Morales",
+        "persona_role": "Payroll Supervisor",
+        "persona_background": "Processes 10,000+ visits per month; drowning in garnishments and mileage stipends.",
+        "time_availability": { "window": "5-10" }
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "prospect": "Peak Construction Group",
+    "category": "Construction",
+    "playbook_highlight": "Seamless Integrations",
+    "difficulty": { "level": "Medium" },
+    "prospect_description": "Regional GC with 125 union & non‑union workers; certified payroll reports for DOT projects.",
+    "decision_makers": [
+      {
+        "persona_name": "Tom Gallagher",
+        "persona_role": "CFO",
+        "persona_background": "CPA; wants job‑costing exports to Sage 300. Skeptical of cloud vendors’ support.",
+        "time_availability": { "window": "5-10" }
+      },
+      {
+        "persona_name": "Maya Chavez",
+        "persona_role": "HR & Safety Manager",
+        "persona_background": "Oversees OSHA training, union dues, and onboarding. Needs bilingual onboarding forms.",
+        "time_availability": { "window": "<5" }
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "prospect": "Pet Wellness Veterinary Group",
+    "category": "Professional Services",
+    "playbook_highlight": "All‑in‑One Workforce Platform",
+    "difficulty": { "level": "Easy" },
+    "prospect_description": "Five vet clinics sharing one EIN (60 employees). Needs integrated time clocks and onboarding.",
+    "decision_makers": [
+      {
+        "persona_name": "Elena Ruiz",
+        "persona_role": "Practice Administrator",
+        "persona_background": "Juggles scheduling in Excel; wants hands‑off tax filing.",
+        "time_availability": { "window": "<5" }
+      },
+      {
+        "persona_name": "Dr. Paul Bennett",
+        "persona_role": "Medical Director / Co‑Owner",
+        "persona_background": "Committed to growth; wants cost control and better PTO visibility for vets.",
+        "time_availability": { "window": "5-10" }
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "prospect": "MetroTech SaaS",
+    "category": "Technology",
+    "playbook_highlight": "Seamless Integrations",
+    "difficulty": { "level": "Hard" },
+    "prospect_description": "Seed‑stage SaaS (30 FTE, rapid hiring). Equity comp + remote workers in seven states.",
+    "decision_makers": [
+      {
+        "persona_name": "Devon Carter",
+        "persona_role": "Head of People Ops",
+        "persona_background": "Startup veteran; values API access and HRIS integrations.",
+        "time_availability": { "window": "10-15" }
+      },
+      {
+        "persona_name": "Leila O'Connor",
+        "persona_role": "Controller",
+        "persona_background": "Owns payroll tax filings; wants automatic multi‑state withholding setup.",
+        "time_availability": { "window": "5-10" }
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "prospect": "Heritage Accounting LLP",
+    "category": "Finance",
+    "playbook_highlight": "Dedicated Service Team",
+    "difficulty": { "level": "Medium" },
+    "prospect_description": "Boutique CPA firm (55 staff) that also runs client write‑up payrolls. Evaluating white‑label partnerships.",
+    "decision_makers": [
+      {
+        "persona_name": "Joyce Kim",
+        "persona_role": "Managing Partner",
+        "persona_background": "Drives tech‑forward initiatives; cautiously optimistic about outsourcing backend engines.",
+        "time_availability": { "window": "5-10" }
+      },
+      {
+        "persona_name": "Ethan Roberts",
+        "persona_role": "Payroll Services Manager",
+        "persona_background": "Manages 120 client payrolls monthly; needs scalable API to feed QuickBooks Online.",
+        "time_availability": { "window": "10-15" }
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "prospect": "Fresh Fields Grocery Co‑op",
+    "category": "Retail",
+    "playbook_highlight": "Compliance Peace of Mind",
+    "difficulty": { "level": "Hard" },
+    "prospect_description": "Worker‑owned co‑op (150 employees, high turnover). Needs multilingual self‑service portals.",
+    "decision_makers": [
+      {
+        "persona_name": "Luis Hernández",
+        "persona_role": "HR Coordinator",
+        "persona_background": "Speaks Spanish & English; spends weekends correcting timesheets.",
+        "time_availability": { "window": "<5" }
+      },
+      {
+        "persona_name": "Dana Whitaker",
+        "persona_role": "Finance Director",
+        "persona_background": "Handles wage grant reporting and ACA compliance; wants audit‑ready reports.",
+        "time_availability": { "window": "5-10" }
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "prospect": "Adventure Outfitters Inc.",
+    "category": "eCommerce / Distribution",
+    "playbook_highlight": "Seamless Integrations",
+    "difficulty": { "level": "Medium" },
+    "prospect_description": "Omni‑channel outdoor gear retailer (85 warehouse + 40 HQ). Wants single‑sign‑on & ACA measurement.",
+    "decision_makers": [
+      {
+        "persona_name": "Becca Lawrence",
+        "persona_role": "Operations Director",
+        "persona_background": "Ex‑Amazon ops lead; lives by KPIs and implementation timelines.",
+        "time_availability": { "window": "5-10" }
+      },
+      {
+        "persona_name": "Jordan Fisher",
+        "persona_role": "IT Systems Lead",
+        "persona_background": "Owns ERP stack; looking for secure SSO and webhook access.",
+        "time_availability": { "window": "<5" }
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "prospect": "Hope Harbor 501(c)(3)",
+    "category": "Non‑Profit",
+    "playbook_highlight": "Dedicated Service Team",
+    "difficulty": { "level": "Easy" },
+    "prospect_description": "Homeless‑shelter non‑profit (40 employees, grant reporting). Needs cost‑center tracking and volunteer hours.",
+    "decision_makers": [
+      {
+        "persona_name": "Samuel Johnson",
+        "persona_role": "Executive Director",
+        "persona_background": "Mission‑driven; limited budget but values service.",
+        "time_availability": { "window": "<5" }
+      },
+      {
+        "persona_name": "Kimberly Allen",
+        "persona_role": "Programs & Grants Manager",
+        "persona_background": "Prepares grant audits; needs cost allocation by funding source.",
+        "time_availability": { "window": "5-10" }
+      }
+    ]
+  }
+]
