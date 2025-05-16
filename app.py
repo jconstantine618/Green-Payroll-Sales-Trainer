@@ -26,6 +26,22 @@ PILLARS = {
     "close":    ["demo", "free trial", "does this sound", "next step", "move forward"]
 }
 
+FEEDBACK_HINTS = {
+    "rapport": "Work on building rapport by showing empathy, thanking them for insights, or using mirroring language.",
+    "pain": "Ask more about challenges or frustrations in their current system to uncover pain points.",
+    "needs": "You missed some great discovery opportunities. Ask what success looks like or how much time they spend.",
+    "teach": "Try educating them with a quick insight or customer story that reframes their thinking.",
+    "close": "You're missing a closing action—suggest a next step like a demo or free trial."
+}
+
+COMPLIMENTS = {
+    "rapport": "Nice rapport building—your tone is friendly and shows good emotional intelligence.",
+    "pain": "You did a great job uncovering the root challenges that matter.",
+    "needs": "Your discovery questions were spot-on.",
+    "teach": "Well done reframing their thinking with relevant examples.",
+    "close": "Excellent closing! You moved the conversation forward with confidence."
+}
+
 def calc_score(msgs):
     counts = {p: 0 for p in PILLARS}
     for m in msgs:
@@ -37,7 +53,11 @@ def calc_score(msgs):
     subs = {p: min(v, 3) * (20/3) for p, v in counts.items()}
     total = int(sum(subs.values()))
     fb = [f"{'✅' if pts>=10 else '⚠️'} {p.title()} {int(pts)}/20" for p, pts in subs.items()]
-    return total, "\n".join(fb), subs
+
+    insights = [COMPLIMENTS[p] if pts >= 15 else FEEDBACK_HINTS[p] for p, pts in subs.items()]
+    feedback_detail = "\n\n".join([f"**{p.title()}**: {insights[i]}" for i, p in enumerate(PILLARS)])
+
+    return total, "\n".join(fb), subs, feedback_detail
 
 # ── TIMER HELPERS ──────────────────────────────────
 def init_timer():
@@ -150,10 +170,11 @@ if st.sidebar.button("🔄 Reset Chat"):
 
 if st.sidebar.button("🔚 End & Score"):
     if not st.session_state.closed:
-        total, fb, subs = calc_score(st.session_state.msgs)
+        total, fb, subs, feedback_detail = calc_score(st.session_state.msgs)
         st.session_state.closed = True
         st.session_state.score = f"🏆 **Score {total}/100**\n\n{fb}"
         st.session_state.sub_scores = subs
+        st.session_state.feedback_detail = feedback_detail
         st.sidebar.success("Scored!")
 
 if st.session_state.score:
@@ -162,6 +183,9 @@ if st.session_state.score:
         st.sidebar.markdown("### 🧩 Score Breakdown")
         for k, v in st.session_state.sub_scores.items():
             st.sidebar.write(f"{k.title()}: {int(v)}/20")
+    if "feedback_detail" in st.session_state:
+        st.sidebar.markdown("### 📣 Suggestions for Improvement")
+        st.sidebar.markdown(st.session_state.feedback_detail)
     if st.sidebar.button("🏅 Save to Leaderboard"):
         name = st.sidebar.text_input("Name:", key="nm")
         if name:
