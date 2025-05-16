@@ -1,16 +1,15 @@
-"""
-Green Payroll – Sales‑Training Chatbot  •  v1
-------------------------------------------------
-Key additions pulled from the official B2B Sales Playbook:
- • Persona prompt now embeds Green Payroll’s value props, benefits,
-   common discovery questions, and preferred closing moves.
- • Updated colour theme + playbook‑driven wording throughout.
-"""
-
-import streamlit as st, openai, os, json, pathlib, time, sqlite3, datetime, base64
+import streamlit as st
+import openai
+import os
+import json
+import pathlib
+import time
+import sqlite3
+import datetime
+import base64
 from gtts import gTTS
 
-# ── DATABASE ────────────────────────────────────────────────────────────────────
+# ── DATABASE ───────────────────────────────────────
 DB = pathlib.Path(__file__).parent / "leaderboard.db"
 conn = sqlite3.connect(DB, check_same_thread=False)
 cur = conn.cursor()
@@ -18,7 +17,7 @@ cur.execute("""CREATE TABLE IF NOT EXISTS leaderboard
                (id INTEGER PRIMARY KEY, name TEXT, score INT, timestamp TEXT)""")
 conn.commit()
 
-# ── SALES PILLARS & SCORING ─────────────────────────────────────────────────────
+# ── SALES PILLARS & SCORING ────────────────────────
 PILLARS = {
     "rapport":  ["i understand", "great question", "thank you for sharing"],
     "pain":     ["challenge", "issue", "pain point", "concern"],
@@ -41,29 +40,31 @@ def calc_score(msgs):
           for p, pts in subs.items()]
     return total, "\n".join(fb)
 
-# ── TIMER HELPERS ───────────────────────────────────────────────────────────────
+# ── TIMER HELPERS ──────────────────────────────────
 def init_timer():
     if "start" not in st.session_state:
         st.session_state.start = time.time()
         st.session_state.cut = False
+
 def time_cap(window):
     limit = {"<5":5,"5-10":10,"10-15":15}.get(window,10)
     return (time.time()-st.session_state.start)/60 >= limit
 
-# ── OPENAI CLIENT ───────────────────────────────────────────────────────────────
+# ── OPENAI CLIENT ──────────────────────────────────
 api = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
-if not api: st.error("OPENAI_API_KEY missing"); st.stop()
+if not api:
+    st.error("OPENAI_API_KEY missing"); st.stop()
 client = openai.OpenAI(api_key=api)
 
-# ── LOAD SCENARIOS ──────────────────────────────────────────────────────────────
+# ── LOAD SCENARIOS ─────────────────────────────────
 DATA = pathlib.Path(__file__).parent / "data" / "greenpayroll_scenarios.json"
 SCENARIOS = json.loads(DATA.read_text())
 
-# ── PAGE SET‑UP ─────────────────────────────────────────────────────────────────
+# ── PAGE SETUP ─────────────────────────────────────
 st.set_page_config(page_title="Green Payroll Sales Trainer", page_icon="💬")
-st.title("💬 Green Payroll — Sales‑Training Chatbot")
+st.title("💬 Green Payroll – Sales Training Chatbot")
 
-# Playbook download (optional)
+# Optional: Sales Playbook Download
 pdf = pathlib.Path(__file__).parent / "GreenPayroll Sales Playbook.pdf"
 if pdf.exists():
     st.sidebar.markdown(
@@ -88,31 +89,31 @@ st.markdown(f"""
 **Time Available:** {P['time_availability']['window']} min
 """)
 
-# ── SYSTEM PROMPT (playbook‑driven) ─────────────────────────────────────────────
+# ── SYSTEM PROMPT ──────────────────────────────────
 sys = f"""
 You are **{P['persona_name']}**, **{P['persona_role']}** at **{S['prospect']}**.
 
 Stay strictly in character using realistic objections & tone.
 
-▼ Green Payroll facts you know (share only when relevant):
-• All‑in‑One Workforce Platform (payroll, benefits, time, onboarding)  
-• Dedicated Service Team (named account mgr)  
-• Compliance Peace‑of‑Mind (proactive alerts)  
-• Seamless Integrations (QuickBooks, etc.)  
-• Typical client gains: save 4‑6 h/wk, lower errors, scale without extra HR staff :contentReference[oaicite:2]{index=2}:contentReference[oaicite:3]{index=3}
+▼ Green Payroll facts you may reference:
+• All‑in‑One Workforce Platform (payroll, benefits, time, onboarding)
+• Dedicated Service Team (named account manager)
+• Compliance Peace‑of‑Mind (proactive alerts)
+• Seamless Integrations (QuickBooks, ERP, ATS)
+• Typical client gains: save 4‑6 h/wk, lower errors, scale without extra HR staff
 
-▼ Common discovery questions you expect to hear:
-  “What system are you using now?” • “What challenges do you face?” •
-  “How much time is payroll taking?” • “Are you confident in compliance?” •
-  “What does success look like?”
+▼ Common discovery questions you expect:
+  “What system are you using now?” • “What challenges do you face?” •
+  “How much time is payroll taking?” • “Are you confident in compliance?” •
+  “What does success look like?”
 
 ▼ Preferred closing approaches:
-  • Offer demo  • Offer free trial  • “Does this sound like a fit?”  • Next‑step scheduling.
+  • Offer demo  • Offer free trial  • “Does this sound like a fit?”  • Next‑step scheduling.
 
 You have {P['time_availability']['window']} min for this call. End it if the rep wastes time.
 """
 
-# ── SESSION STATE ───────────────────────────────────────────────────────────────
+# ── SESSION STATE ─────────────────────────────────
 if "scenario" not in st.session_state or st.session_state.scenario != pick:
     st.session_state.scenario = pick
     st.session_state.msgs = [{"role":"system","content":sys}]
