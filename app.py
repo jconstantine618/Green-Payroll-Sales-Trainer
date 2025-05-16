@@ -138,6 +138,7 @@ if "scenario" not in st.session_state or st.session_state.scenario != pick:
     st.session_state.msgs = [{"role":"system","content":sys}]
     st.session_state.closed = False
     st.session_state.score = ""
+    st.session_state.score_value = 0
 
 init_timer()
 
@@ -175,6 +176,7 @@ if st.sidebar.button("🔚 End & Score"):
         st.session_state.score = f"🏆 **Score {total}/100**\n\n{fb}"
         st.session_state.sub_scores = subs
         st.session_state.feedback_detail = feedback_detail
+        st.session_state.score_value = total
         st.sidebar.success("Scored!")
 
 if st.session_state.score:
@@ -186,13 +188,11 @@ if st.session_state.score:
     if "feedback_detail" in st.session_state:
         st.sidebar.markdown("### 📣 Suggestions for Improvement")
         st.sidebar.markdown(st.session_state.feedback_detail)
-    if st.sidebar.button("🏅 Save to Leaderboard"):
-        name = st.sidebar.text_input("Name:", key="nm")
-        if name:
-            cur.execute("INSERT INTO leaderboard(name,score,timestamp) VALUES(?,?,?)",
-                        (name,int(st.session_state.score.split()[1].split('/')[0]),
-                         datetime.datetime.now()))
-            conn.commit()
+    name = st.sidebar.text_input("Name:", key="nm")
+    if st.sidebar.button("🏅 Save to Leaderboard") and name:
+        cur.execute("INSERT INTO leaderboard(name,score,timestamp) VALUES(?,?,?)",
+                    (name, st.session_state.score_value, datetime.datetime.now()))
+        conn.commit()
     st.sidebar.write("### Top 10")
     for i,(n,s) in enumerate(cur.execute(
         "SELECT name,score FROM leaderboard ORDER BY score DESC,timestamp ASC LIMIT 10"),1):
