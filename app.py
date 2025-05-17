@@ -125,7 +125,7 @@ SCENARIOS = json.loads(DATA.read_text())
 
 # ── PAGE SETUP ─────────────────────────────────────
 st.set_page_config(page_title="Green Payroll Sales Trainer", page_icon="💬")
-st.title("💬 Green Payroll – Sales Training Chatbot")
+st.title("💬 Green Payroll - Sales Training Chatbot")
 
 # Optional: Sales Playbook Download
 pdf = pathlib.Path(__file__).parent / "GreenPayroll Sales Playbook.pdf"
@@ -176,10 +176,10 @@ Stay strictly in character using realistic objections & tone.
 - Dedicated Service Team (named account manager)
 - Compliance Peace-of-Mind (proactive alerts)
 - Seamless Integrations (QuickBooks, ERP, ATS)
-- Typical client gains: save 4–6 h/wk, lower errors, scale without extra HR staff
+- Typical client gains: save 4-6 h/wk, lower errors, scale without extra HR staff
 
 - Common discovery questions you expect:
-  “What system are you using now?” • “What challenges do you face?” •
+  “What system are you using now?” - “What challenges do you face?” •
   “How much time is payroll taking?” • “Are you confident in compliance?” •
   “What does success look like?”
 
