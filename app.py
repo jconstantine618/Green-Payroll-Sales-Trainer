@@ -42,6 +42,24 @@ COMPLIMENTS = {
     "close": "Excellent closing! You moved the conversation forward with confidence."
 }
 
+def generate_follow_up_narrative(sub_scores, scenario, persona):
+    name = persona["persona_name"]
+    company = scenario["prospect"]
+    score = int(sum(sub_scores.values()))
+    close_score = sub_scores.get("close", 0)
+    rapport = sub_scores.get("rapport", 0)
+    pain = sub_scores.get("pain", 0)
+
+    if score >= 75 and close_score >= 10:
+        return f"You and {name} agreed it made sense to review your proposal together. When you returned, they were warm, receptive, and clearly remembered your previous conversation. You presented a solution and it was accepted. {company} will soon become a strong long-term client."
+    elif score >= 50 and close_score >= 5:
+        return f"You left a solid impression. {name} asked for a deeper breakdown of pricing before presenting internally. A second call is scheduled next week to walk through next steps."
+    elif score >= 35 and rapport >= 10 and pain >= 5:
+        return f"You followed up via email and got a short reply. {name} said they’re reviewing internally and may reach out later this month. It’s still an open opportunity, but it will require persistence."
+    else:
+        return f"You left a voicemail and sent a follow-up email, but didn’t hear back. After two weeks of silence, it’s safe to assume {name} has moved on with another provider. This opportunity is marked as lost."
+
+
 def calc_score(msgs):
     counts = {p: 0 for p in PILLARS}
     for m in msgs:
@@ -108,7 +126,20 @@ pick  = st.sidebar.selectbox("Choose a scenario", names)
 voice = st.sidebar.checkbox("🎙️ Voice Playback")
 
 S = SCENARIOS[names.index(pick)]
+
+# ── Assess Difficulty Dynamically ──
+def assess_difficulty(scenario):
+    desc = scenario.get("prospect_description", "").lower()
+    if any(word in desc for word in ["multi-state", "compliance", "remote", "credential", "stipend", "garnishment"]):
+        return "Hard", 20
+    elif any(word in desc for word in ["tip", "brewery", "multiple locations", "over 50", "union"]):
+        return "Medium", 15
+    else:
+        return "Easy", 10
+
+S["difficulty"] = {"level": assess_difficulty(S)[0]}
 P = S["decision_makers"][0]
+P["time_availability"]["window"] = assess_difficulty(S)[1]
 
 st.markdown(f"""
 **Persona:** {P['persona_name']} ({P['persona_role']})  
@@ -190,6 +221,10 @@ if st.sidebar.button("🔚 End & Score"):
         st.sidebar.success("Scored!")
 
 if st.session_state.score:
+    # Add next meeting outcome narrative
+    outcome_story = generate_follow_up_narrative(st.session_state.sub_scores, S, P)
+    st.sidebar.markdown("### 📘 What Happened Next")
+    st.sidebar.markdown(outcome_story)
     st.sidebar.markdown(st.session_state.score)
     if "sub_scores" in st.session_state:
         st.sidebar.markdown("### 🧩 Score Breakdown")
