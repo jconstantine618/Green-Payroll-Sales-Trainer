@@ -83,10 +83,10 @@ def calc_score(msgs):
     conversation = " ".join([m["content"].lower() for m in msgs if m["role"] == "user"])
     uncovered = [o for o in DEAL_OBJECTIONS if o in conversation]
     missed = [o for o in DEAL_OBJECTIONS if o not in uncovered]
-    objection_summary = f"
-
-**Objections you uncovered:** {', '.join(uncovered) if uncovered else 'None'}"
-    objection_summary += f"
+    objection_summary = f"""
+**Objections you uncovered:** {', '.join(uncovered) if uncovered else 'None'}"""
+    objection_summary += f"""
+**Objections you missed:** {', '.join(missed) if missed else 'None'}"""
 **Objections you missed:** {', '.join(missed) if missed else 'None'}"
 
     feedback_detail += objection_summary
