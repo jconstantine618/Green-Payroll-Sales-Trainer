@@ -176,7 +176,7 @@ Stay strictly in character using realistic objections & tone.
 - Dedicated Service Team (named account manager)
 - Compliance Peace-of-Mind (proactive alerts)
 - Seamless Integrations (QuickBooks, ERP, ATS)
-• Typical client gains: save 4–6 h/wk, lower errors, scale without extra HR staff
+- Typical client gains: save 4–6 h/wk, lower errors, scale without extra HR staff
 
 - Common discovery questions you expect:
   “What system are you using now?” • “What challenges do you face?” •
