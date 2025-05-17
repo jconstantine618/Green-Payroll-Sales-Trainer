@@ -60,6 +60,10 @@ def generate_follow_up_narrative(sub_scores, scenario, persona):
         return f"You left a voicemail and sent a follow-up email, but didn’t hear back. After two weeks of silence, it’s safe to assume {name} has moved on with another provider. This opportunity is marked as lost."
 
 
+DEAL_OBJECTIONS = [
+    "budget", "timing", "vendor switching", "implementation", "support", "internal approval"
+]
+
 def calc_score(msgs):
     counts = {p: 0 for p in PILLARS}
     for m in msgs:
@@ -75,7 +79,19 @@ def calc_score(msgs):
     insights = [COMPLIMENTS[p] if pts >= 15 else FEEDBACK_HINTS[p] for p, pts in subs.items()]
     feedback_detail = "\n\n".join([f"**{p.title()}**: {insights[i]}" for i, p in enumerate(PILLARS)])
 
-    return total, "\n".join(fb), subs, feedback_detail
+        # Check for objection coverage
+    conversation = " ".join([m["content"].lower() for m in msgs if m["role"] == "user"])
+    uncovered = [o for o in DEAL_OBJECTIONS if o in conversation]
+    missed = [o for o in DEAL_OBJECTIONS if o not in uncovered]
+    objection_summary = f"
+
+**Objections you uncovered:** {', '.join(uncovered) if uncovered else 'None'}"
+    objection_summary += f"
+**Objections you missed:** {', '.join(missed) if missed else 'None'}"
+
+    feedback_detail += objection_summary
+    return total, "
+".join(fb), subs, feedback_detail
 
 # ── TIMER HELPERS ──────────────────────────────────
 def init_timer():
