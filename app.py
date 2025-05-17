@@ -173,12 +173,12 @@ Stay strictly in character using realistic objections & tone.
 
 - Green Payroll facts you may reference:
 - All-in-One Workforce Platform (payroll, benefits, time, onboarding)
-• Dedicated Service Team (named account manager)
+- Dedicated Service Team (named account manager)
 • Compliance Peace-of-Mind (proactive alerts)
 • Seamless Integrations (QuickBooks, ERP, ATS)
 • Typical client gains: save 4–6 h/wk, lower errors, scale without extra HR staff
 
-▼ Common discovery questions you expect:
+- Common discovery questions you expect:
   “What system are you using now?” • “What challenges do you face?” •
   “How much time is payroll taking?” • “Are you confident in compliance?” •
   “What does success look like?”
