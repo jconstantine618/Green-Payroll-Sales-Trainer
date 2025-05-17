@@ -174,8 +174,8 @@ Stay strictly in character using realistic objections & tone.
 - Green Payroll facts you may reference:
 - All-in-One Workforce Platform (payroll, benefits, time, onboarding)
 - Dedicated Service Team (named account manager)
-• Compliance Peace-of-Mind (proactive alerts)
-• Seamless Integrations (QuickBooks, ERP, ATS)
+- Compliance Peace-of-Mind (proactive alerts)
+- Seamless Integrations (QuickBooks, ERP, ATS)
 • Typical client gains: save 4–6 h/wk, lower errors, scale without extra HR staff
 
 - Common discovery questions you expect:
@@ -183,7 +183,7 @@ Stay strictly in character using realistic objections & tone.
   “How much time is payroll taking?” • “Are you confident in compliance?” •
   “What does success look like?”
 
-▼ Preferred closing approaches:
+- Preferred closing approaches:
   • Offer demo  • Offer free trial  • “Does this sound like a fit?”  • Next-step scheduling.
 
 You have {P['time_availability']['window']} min for this call. End it if the rep wastes time.
