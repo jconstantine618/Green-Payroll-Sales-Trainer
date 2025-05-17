@@ -86,11 +86,11 @@ def calc_score(msgs):
     objection_summary = f"""
 **Objections you uncovered:** {', '.join(uncovered) if uncovered else 'None'}"""
     objection_summary += f"""
-**Objections you missed:** {', '.join(missed) if missed else 'None'}"""
+""
 **Objections you missed:** {', '.join(missed) if missed else 'None'}"
 
     feedback_detail += objection_summary
-    return total, "
+        return total, "
 ".join(fb), subs, feedback_detail
 
 # ── TIMER HELPERS ──────────────────────────────────
