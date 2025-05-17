@@ -64,9 +64,19 @@ def init_timer():
     if "start" not in st.session_state:
         st.session_state.start = time.time()
         st.session_state.cut = False
+    st.sidebar.markdown("### ⏱️ Time Remaining")
+    elapsed = (time.time() - st.session_state.start) / 60
+    max_time = {"<5":10, "5-10":10, "10-15":15}.get(P["time_availability"]["window"], 10)
+    remaining = max_time - elapsed
+    if remaining <= 1 and not st.session_state.cut:
+        st.sidebar.warning("⚠️ Less than 1 minute remaining!")
+    elif remaining <= 3:
+        st.sidebar.info(f"⏳ {int(remaining)} minutes left")
+    else:
+        st.sidebar.write(f"{int(remaining)} minutes remaining")
 
 def time_cap(window):
-    limit = {"<5":5,"5-10":10,"10-15":15}.get(window,10)
+    limit = {"<5":10, "5-10":10, "10-15":15}.get(window, 10)
     return (time.time()-st.session_state.start)/60 >= limit
 
 # ── OPENAI CLIENT ──────────────────────────────────
